@@ -149,3 +149,45 @@ func Test_Xnor(t *testing.T) {
 		}
 	}
 }
+
+func Benchmark_And(b *testing.B) {
+
+	for n := 0; n < b.N; n++ {
+		And(true, true)
+	}
+}
+func Benchmark_Nand(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Nand(true, true)
+	}
+}
+func Benchmark_Not(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Not(true)
+	}
+}
+func Benchmark_Nor(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Nor(true, true)
+	}
+}
+func Benchmark_Or(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Or(true, true)
+	}
+}
+func Benchmark_And3(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		And3(true, true, false)
+	}
+}
+func Benchmark_Xor(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Xor(true, false)
+	}
+}
+func Benchmark_Xnor(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Xnor(true, false)
+	}
+}
