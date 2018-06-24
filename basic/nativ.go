@@ -4,7 +4,6 @@
 package logicgates
 
 // Not gate
-// Nand(1,1) = 0; Nand(0,0) = 1
 func Not(a bool) bool {
 	return !a
 }
