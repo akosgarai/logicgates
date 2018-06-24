@@ -113,3 +113,39 @@ func Test_And3(t *testing.T) {
 		}
 	}
 }
+
+func Test_Xor(t *testing.T) {
+	var testData = []struct {
+		first    bool
+		second   bool
+		expected bool
+	}{
+		{false, false, false},
+		{true, false, true},
+		{true, true, false},
+		{false, true, true},
+	}
+	for _, tt := range testData {
+		if tt.expected != Xor(tt.first, tt.second) {
+			t.Errorf("Not expected output. Xor(%v, %v) suppose to be %v.", tt.first, tt.second, tt.expected)
+		}
+	}
+}
+
+func Test_Xnor(t *testing.T) {
+	var testData = []struct {
+		first    bool
+		second   bool
+		expected bool
+	}{
+		{false, false, true},
+		{true, false, false},
+		{true, true, true},
+		{false, true, false},
+	}
+	for _, tt := range testData {
+		if tt.expected != Xnor(tt.first, tt.second) {
+			t.Errorf("Not expected output. Xnor(%v, %v) suppose to be %v.", tt.first, tt.second, tt.expected)
+		}
+	}
+}
