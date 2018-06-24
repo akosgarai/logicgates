@@ -90,3 +90,26 @@ func Test_Nor(t *testing.T) {
 		}
 	}
 }
+
+func Test_And3(t *testing.T) {
+	var testData = []struct {
+		first    bool
+		second   bool
+		third    bool
+		expected bool
+	}{
+		{false, false, true, false},
+		{false, false, false, false},
+		{false, true, true, false},
+		{false, true, false, false},
+		{true, false, true, false},
+		{true, false, false, false},
+		{true, true, true, true},
+		{true, true, false, false},
+	}
+	for _, tt := range testData {
+		if tt.expected != And3(tt.first, tt.second, tt.third) {
+			t.Errorf("Not expected output. And3(%v, %v, %v) suppose to be %v.", tt.first, tt.second, tt.third, tt.expected)
+		}
+	}
+}
