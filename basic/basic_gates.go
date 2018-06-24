@@ -14,3 +14,9 @@ func Xor(a, b bool) bool {
 func Xnor(a, b bool) bool {
 	return Not(Xor(a, b))
 }
+
+// Half adder
+// Output: S, C
+func HalfAdd(a, b bool) (bool, bool) {
+	return Xor(a, b), And(a, b)
+}
