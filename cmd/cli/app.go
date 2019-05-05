@@ -9,19 +9,38 @@ import (
 	"github.com/fatih/color"
 )
 
+type Command struct {
+	Name        string
+	Description string
+}
+
 type Cli struct {
+	prompt   *color.Color
+	welcome  *color.Color
+	help     *color.Color
+	invalid  *color.Color
+	commands []Command
 }
 
 func New() *Cli {
-	c := &Cli{}
+	c := &Cli{
+		prompt:  color.New(color.FgRed, color.Bold, color.BgBlue),
+		welcome: color.New(color.FgCyan, color.Bold),
+		help:    color.New(color.FgBlack, color.Bold, color.BgYellow),
+		invalid: color.New(color.FgBlack, color.Bold, color.BgRed),
+		commands: []Command{
+			{"help", "Print out the help menu."},
+			{"colors", "Print out a sample text for checking the colors that we can use."},
+			{"exit", "Quit from the application."},
+		},
+	}
 	c.Welcome()
 	c.Help()
 	return c
 }
 
 func (c *Cli) Welcome() {
-	d := color.New(color.FgCyan, color.Bold)
-	d.Println("LogicGate cli-tool")
+	c.welcome.Println("LogicGate cli-tool")
 }
 
 func (c *Cli) PrintClolorsForTesting() error {
@@ -37,23 +56,20 @@ func (c *Cli) PrintClolorsForTesting() error {
 
 func (c *Cli) Prompt() {
 	t := time.Now()
-	d := color.New(color.FgRed, color.Bold, color.BgBlue)
-	d.Printf("[ %s ] cli-tool $ ", t.Format("2006-01-02 15:04:05"))
+	c.prompt.Printf("[ %s ] cli-tool $ ", t.Format("2006-01-02 15:04:05"))
 }
 func (c *Cli) Help() error {
-	d := color.New(color.FgBlack, color.Bold, color.BgYellow)
-	d.Println("Commands:")
-	d.Println(" - help")
-	d.Println(" - exit")
-	d.Println(" - colors")
+	c.help.Println("Commands:")
+	for _, item := range c.commands {
+		c.help.Println(" - ", item.Name, " : ", item.Description)
+	}
 	fmt.Println("")
 	return nil
 }
 func (c *Cli) InvalidCommand(cmdString string) error {
-	d := color.New(color.FgBlack, color.Bold, color.BgRed)
-	d.Println("Invalid command! The following command does not exists.")
-	d.Println(cmdString)
-	d.Println("Type help for the helpmenu.")
+	c.invalid.Println("Invalid command! The following command does not exist.")
+	c.invalid.Println(cmdString)
+	c.invalid.Println("Type help for the helpmenu.")
 	fmt.Println("")
 	return nil
 }
