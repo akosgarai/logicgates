@@ -7,7 +7,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"os/exec"
 	"strings"
 	"time"
 
@@ -54,6 +53,9 @@ func main() {
 }
 func runCommand(commandStr string) error {
 	commandStr = strings.TrimSuffix(commandStr, "\n")
+	if commandStr == "" {
+		return nil
+	}
 	arrCommandStr := strings.Fields(commandStr)
 	switch arrCommandStr[0] {
 	case "exit":
@@ -63,10 +65,7 @@ func runCommand(commandStr string) error {
 	case "help":
 		return help()
 	}
-	cmd := exec.Command("echo", commandStr)
-	cmd.Stderr = os.Stderr
-	cmd.Stdout = os.Stdout
-	return cmd.Run()
+	return invalidCommand(commandStr)
 }
 func help() error {
 	d := color.New(color.FgBlack, color.Bold, color.BgYellow)
@@ -74,6 +73,14 @@ func help() error {
 	d.Println(" - help")
 	d.Println(" - exit")
 	d.Println(" - colors")
+	fmt.Println("")
+	return nil
+}
+func invalidCommand(cmdString string) error {
+	d := color.New(color.FgBlack, color.Bold, color.BgRed)
+	d.Println("Invalid command! The following command does not exists.")
+	d.Println(cmdString)
+	d.Println("Type help for the helpmenu.")
 	fmt.Println("")
 	return nil
 }
