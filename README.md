@@ -65,6 +65,7 @@ Truth table
 - Half adder
 
 Truth table
+
 |A|B|C|S|
 |:-:|:-:|:-:|:-:|
 |0|0|0|0|
