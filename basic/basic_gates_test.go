@@ -170,6 +170,31 @@ func Test_HalfAdder(t *testing.T) {
 	}
 }
 
+func Test_FullAdder(t *testing.T) {
+	var testData = []struct {
+		first      bool
+		second     bool
+		third      bool
+		expected_c bool
+		expected_s bool
+	}{
+		{false, false, false, false, false},
+		{false, false, true, false, true},
+		{false, true, false, false, true},
+		{false, true, true, true, false},
+		{true, false, false, false, true},
+		{true, false, true, true, false},
+		{true, true, false, true, false},
+		{true, true, true, true, true},
+	}
+	for _, tt := range testData {
+		temp_s, temp_c := FullAdd(tt.first, tt.second, tt.third)
+		if tt.expected_s != temp_s && tt.expected_c != temp_c {
+			t.Errorf("Not expected output. FullAdd(%v, %v, %v) suppose to be %v (c), %v (s).", tt.first, tt.second, tt.third, tt.expected_c, tt.expected_s)
+		}
+	}
+}
+
 func Benchmark_And(b *testing.B) {
 
 	for n := 0; n < b.N; n++ {
@@ -214,5 +239,10 @@ func Benchmark_Xnor(b *testing.B) {
 func Benchmark_HalfAdd(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		HalfAdd(true, false)
+	}
+}
+func Benchmark_FullAdd(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		FullAdd(true, false, true)
 	}
 }

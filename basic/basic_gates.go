@@ -20,3 +20,10 @@ func Xnor(a, b bool) bool {
 func HalfAdd(a, b bool) (bool, bool) {
 	return Xor(a, b), And(a, b)
 }
+
+// Full adder
+// Input: A, B, Cin
+// Output: S, Cout
+func FullAdd(a, b, c bool) (bool, bool) {
+	return Xor(Xor(a, b), c), Or(And(Xor(a, b), c), And(a, b))
+}
