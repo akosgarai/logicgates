@@ -19,7 +19,7 @@ func welcome() {
 	d.Println("LogicGate cli-tool")
 }
 
-func printClolorsForTesting() {
+func printClolorsForTesting() error {
 	color.Blue("LogicGate cli-tool")
 	color.Cyan("LogicGate cli-tool")
 	color.Magenta("LogicGate cli-tool")
@@ -27,6 +27,7 @@ func printClolorsForTesting() {
 	color.Yellow("LogicGate cli-tool")
 	color.Green("LogicGate cli-tool")
 	color.Red("LogicGate cli-tool")
+	return nil
 }
 
 func prompt() {
@@ -38,7 +39,6 @@ func prompt() {
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	welcome()
-	printClolorsForTesting()
 	help()
 	for {
 		prompt()
@@ -58,6 +58,8 @@ func runCommand(commandStr string) error {
 	switch arrCommandStr[0] {
 	case "exit":
 		os.Exit(0)
+	case "colors":
+		return printClolorsForTesting()
 	case "help":
 		return help()
 	}
@@ -70,5 +72,6 @@ func help() error {
 	fmt.Println("Commands:")
 	fmt.Println(" - help")
 	fmt.Println(" - exit")
+	fmt.Println(" - colors")
 	return nil
 }
