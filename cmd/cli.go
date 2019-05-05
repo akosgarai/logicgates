@@ -69,9 +69,11 @@ func runCommand(commandStr string) error {
 	return cmd.Run()
 }
 func help() error {
-	fmt.Println("Commands:")
-	fmt.Println(" - help")
-	fmt.Println(" - exit")
-	fmt.Println(" - colors")
+	d := color.New(color.FgBlack, color.Bold, color.BgYellow)
+	d.Println("Commands:")
+	d.Println(" - help")
+	d.Println(" - exit")
+	d.Println(" - colors")
+	fmt.Println("")
 	return nil
 }
