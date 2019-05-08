@@ -22,7 +22,7 @@ func main() {
 		}
 		err = cliTool.RunCommand(cmdString)
 		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
+			cliTool.ErrorLog(err.Error())
 		}
 	}
 }
