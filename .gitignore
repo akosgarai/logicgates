@@ -1,3 +1,4 @@
 *.sw[p|o]
 tmp/
 gate-cli
+vendor/
