@@ -90,3 +90,19 @@ go test -tags="nativ" -bench=.
 go test -tags="nand" -bench=.
 go test -tags="nor" -bench=.
 ```
+
+# CLI tool
+
+## build & run the app
+
+To build the cli app, you have to run the following command:
+
+```bash
+go build -o gate-cli cmd/cli.go
+```
+
+Then you can run the app with the following command:
+
+```bash
+./gate-cli
+```
