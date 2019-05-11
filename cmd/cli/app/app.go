@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/akosgarai/logicgates/basic"
+	"github.com/akosgarai/logicgates/pkg/logicgates"
 	"github.com/fatih/color"
 )
 

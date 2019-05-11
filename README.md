@@ -95,13 +95,14 @@ go test -tags="nor" -bench=.
 
 ## build & run the app
 
-To build the cli app, you have to run the following command:
+To build the cli app, you have to run the following commands:
 
 ```bash
-go build -o gate-cli cmd/cli.go
+dep ensure
+go build -tags nativ -o gate-cli cmd/cli/cli.go
 ```
 
-Then you can run the app with the following command:
+The first one is necessary for the package dependency related stuff. The next one builds the cli application. Then you can run the app with the following command:
 
 ```bash
 ./gate-cli

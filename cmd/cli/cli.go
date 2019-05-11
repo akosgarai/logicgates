@@ -1,5 +1,3 @@
-// +build cli
-
 // main application for the cli tool
 package main
 
@@ -8,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/akosgarai/logicgates/cmd/cli"
+	"github.com/akosgarai/logicgates/cmd/cli/app"
 )
 
 func main() {
